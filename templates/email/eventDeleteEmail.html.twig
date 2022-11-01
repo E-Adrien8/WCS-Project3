@@ -1,0 +1,13 @@
+{% extends 'email/layoutEmail.html.twig' %}
+
+{% block content %}
+            <p><strong>{{ event.restaurant.name }} le {{ event.date|date('d-m-Y') }}</strong></p>
+            <br>
+            <p>Bonjour <strong>{{ user.firstname }}</strong>,</p>
+            <p>L'évènement a été annulé par le restaurateur.
+                <br>
+                Vous pouvez réserver une nouvelle date à cette <a href="http://www.copainsderesto.com/" target="_blank">adresse</a>.
+                <br>
+                L'équipe de Copains De resto!
+            </p>
+{% endblock %}

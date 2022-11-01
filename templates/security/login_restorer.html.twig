@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <section class="m-5 py-5">
+        <div class="card col-lg-6 mx-auto">
+            <h5 class="card-header text-center">Restaurateur? Connectez-vous à votre compte</h5>
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <form method="post">
+                                {% if error %}
+                                    <div class="mb-4 alert alert-danger">
+                                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                                    </div>
+                                {% endif %}
+
+                                {% if app.user %}
+                                    <div class="mb-4">
+                                        You are logged in as {{ app.user.userIdentifier }}, <a
+                                            href="{{ path('app_logout_restorer') }}">Logout</a>
+                                    </div>
+                                {% endif %}
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text bg-primaryColor" id="basic-addon1">
+                                        <i class="bi bi-envelope-fill"></i></span>
+                                    <input type="email" value="{{ last_username }}"
+                                           name="email"
+                                           id="inputEmail"
+                                           class="form-control"
+                                           placeholder="Email"
+                                           aria-label="Email"
+                                           aria-describedby="basic-addon1"
+                                           autocomplete="email"
+                                           required autofocus>
+                                </div>
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text bg-primaryColor" id="basic-addon1">
+                                        <i class="bi bi-key-fill"></i></span>
+                                    <input type="password" name="password"
+                                           id="inputPassword"
+                                           class="form-control"
+                                           placeholder="Mot de passe"
+                                           aria-label="Mot de passe"
+                                           aria-describedby="basic-addon1"
+                                           autocomplete="current-password"
+                                           required>
+
+                                    <input type="hidden" name="_csrf_token"
+                                           value="{{ csrf_token('authenticate') }}"
+                                    >
+                                </div>
+                                <div class="mb-4 text-center">
+                                    {#
+                                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                                    See https://symfony.com/doc/current/security/remember_me.html
+
+                                    <div class="checkbox mb-3">
+                                        <label>
+                                            <input type="checkbox" name="_remember_me"> Remember me
+                                        </label>
+                                    </div>
+                                    #}
+
+                                    <button class="btn btn-dark" type="submit">
+                                        Connexion
+                                    </button>
+                                </div>
+                                <div class="my-4">
+                                    <p class="fw-light"><a href="{{path('app_forgot_password_request')}}">Mot de passe oublié?</a></p>
+                                    <p class="fw-light">Vous n'avez pas de compte restaurateur? <a href="{{ path('app_restorer_register') }}">Inscrivez-vous!</a></p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

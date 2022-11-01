@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+    <section class="py-md-5 py-2">
+        <div class="card col-lg-6 mx-auto">
+            <h5 class="card-header text-center" style="background-color: #f7cb0c;">Profil de {{ user.userName }}</h5>
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-6 text-center">
+                            <ul class="list-group list-group-flush">
+                                {% if user.picture is not null %}
+                                    <a href="{{ path('app_user_profil',{'id':user.id}) }}">
+                                        <img
+                                            class=" rounded-circle p-1 bd-highlight"
+                                            src="{{ asset('uploads/avatars/'~user.picture) }}" width="200" height="200"
+                                            alt="{{ user.username|capitalize }}"
+                                            title="{{ user.username|capitalize }}"></a>
+                                {% else %}
+                                    <a href="{{ path('app_user_profil',{'id':user.id}) }}">
+                                        <img
+                                            class=" rounded-circle p-1 bd-highlight"
+                                            src="{{ asset('images/avatar.jpg') }}" width="200" height="200"
+                                            alt="{{ user.username|capitalize }}"
+                                            title="{{ user.username|capitalize }}"></a>
+                                {% endif %}
+                                {% if user.facebook is not null %}
+                                    <li class="list-group-item"><a href="{{ user.facebook }}"
+                                                                   target="_blank" class="nav-link p-0 text-muted"><i
+                                                class="bi bi-facebook"></i> @Facebook</a></li>
+                                {% endif %}
+                                {% if user.instagram is not null %}
+                                    <li class="list-group-item"><a href="{{ user.instagram }}"
+                                                                   target="_blank" class="nav-link p-0 text-muted"><i
+                                                class="bi bi-instagram"></i> @Instagram</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+
+
+                        <div class="col-12 col-md-6">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><strong>Age
+                                        :</strong> {{ age }} ans</li>
+                                <li class="list-group-item"><strong>Sexe :</strong> {{ user.sex }}</li>
+                                <li class="list-group-item"><strong>Ville :</strong> {{ user.city }}</li>
+                                <li class="list-group-item"><strong>Loisirs, Centre d'intérêts :</strong></br>
+                                    {% if user.description is not null %}
+                                        {{ user.description }}
+                                    {% else %}
+
+                                    {% endif %}</li>
+                                <li class="list-group-item"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

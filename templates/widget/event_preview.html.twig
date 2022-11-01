@@ -1,0 +1,62 @@
+<a href="{{ path('app_event', {'id': event.id}) }}" class="card mb-3 text-decoration-none text-black "
+   style="max-width: 50rem;" data-event-id="{{ event.id }}" data-event-lat="{{ event.restaurant.latitude }}"
+   data-event-lng="{{ event.restaurant.longitude }}">
+
+    <div class="row g-0">
+        <div class="col-md-5">
+            <div>
+                        <img src="{{ asset('uploads/main-pictures/'~event.restaurant.mainPicture) }}"
+                             class="d-block w-100" alt="{{ event.restaurant.name }}"
+                             style="width: 30rem; min-height: 18rem; object-fit: cover; object-position: 50% 0;">
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="card-body">
+                <p class="card-text mb-0"> {{ event.restaurant.foodType.name }} </p>
+                <h5 class="card-title"> {{ event.restaurant.name }} </h5>
+                <p class="card-text" style="font-weight: bold"> Le {{ event.date|date("d/m/Y") }}
+                    à {{ event.time | replace({':': 'h'}) }}</p>
+                <p class="card-text m-0" style="font-size: 0.9rem;">A proximité de {{ event.restaurant.zone.city }} </p>
+                <i class="bi bi-geo-alt-fill"
+                   style="font-size: 0.9rem; font-style: normal"> {{ event.restaurant.zipcode }} {{ event.restaurant.city }}  </i>
+                <p class="mt-3" style="font-size: 0.9rem;">Table de <strong>{{ event.places }} places </strong> maximum
+                </p>
+                <div class="d-flex flex-row align-items-center">
+
+                    <p class="m-0" style="font-size: 0.9rem;"><strong>{{ event.attendees | length }}</strong>
+                        participant(s)</p>
+
+                    {% for user in event.attendees %}
+                        {% if user.picture is not null %}
+                        <img
+                            class=" rounded-circle p-1 bd-highlight"
+                            src="{{ asset('uploads/avatars/'~user.picture) }}" width="40" height="40"
+                            alt="{{ user.username|capitalize }}"
+                            title="{{ user.username|capitalize }}">
+                        {% else %}
+                            <img
+                                class=" rounded-circle p-1 bd-highlight"
+                                src="{{ asset('images/avatar.jpg') }}" width="40" height="40"
+                                alt="{{ user.username|capitalize }}"
+                                title="{{ user.username|capitalize }}">
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+
+                {% if event.isFull() %}
+                    <p class="text-danger mt-0" style="font-weight: bold">Évènement complet</p>
+                {% elseif event.isConfirmed() %}
+
+                    <p class="m-0" style="font-weight: bold; color: forestgreen;">Évènement confirmé</p>
+
+                {% else %}
+
+                    <p class="text-warning m-0" style="font-weight: bold">Évènement en attente de confirmation</p>
+
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</a>

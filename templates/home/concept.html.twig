@@ -1,0 +1,177 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Concept - Copains de resto{% endblock %}
+
+{% block header %}
+    <img src="{{ asset("images/header7.jpg") }}" width="100%" alt="Image header Copains de resto">
+{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto px-md-5">
+        <div class="text-center py-2 col-12">
+            <h1>Le concept</h1>
+            <hr class="col-md-8 col-12 m-auto">
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <div class="pt-md-5 p-3">
+                    <h4>Copains de resto c’est quoi ?</h4><br>
+                    <p style="text-align: justify">Copains de resto c'est un nouveau concept de réservation de restaurants où les restaurateurs et
+                        bars
+                        à vin partenaires de Copains de resto proposent une table afin que des clients qui ne se
+                        connaissent
+                        pas puissent réserver un restaurant et partager un moment de découvertes culinaires et sociales
+                        en
+                        rencontrant de nouvelles personnes !</p>
+                </div>
+                <div class="my-md-5 my-3 text-center">
+                    <img src="{{ asset('images/header10.jpg') }}" alt="Copains de Reso" title="Copains de resto"
+                         width="80%">
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <h4 class="pb-md-4">Copains de resto c’est pour qui ?</h4>
+                <p>Si :</p>
+                <ul>
+                    <li> Vos amis ou votre conjoint ne sont pas disponibles pour aller déjeuner ou diner au restaurant
+                        ;
+                    </li>
+                    <li> Vous êtes célibataire, en couple, en voyage solo, en déplacement professionnel, nouvel habitant
+                        dans une ville ;
+                    </li>
+                    <li> Votre conjoint n’a pas les mêmes gouts culinaires que vous ;</li>
+                    <li> Vous n’aimez pas aller seul au restaurant ;</li>
+                </ul>
+                <p>Et que vous avez envie :</p>
+                <ul>
+                    <li> De découvrir un restaurant ;</li>
+                    <li> De faire une dégustation dans un bar à vin ;</li>
+                    <li> De faire de nouvelles rencontres sociales qui peuvent devenir de vrais amis ;</li>
+                    <li> De vivre une expérience originale et décontractée ;</li>
+                </ul>
+                <p class="pt-3"><strong>Copains de resto est fait pour vous !</strong></p>
+            </div>
+        </div>
+        <div class="text-center py-md-5">
+            <img src="{{ asset('images/img4.jpg') }}" class="img-fluid" alt="Copains de Resto" title="Copains de resto">
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 p-3">
+                <h4 class ='pb-md-4'>Comment ça marche ?</h4>
+                <p>Vous venez de vous inscrire sur le site Copains de Resto : bravo !</p>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-4 col-12 px-5 text-center">
+                <img src="{{ asset('images/img5.jpg') }}" alt="Copains de Resto" class="img-fluid" height="80%" title="Copains de resto">
+            </div>
+            <div class="col-md-4 col-12">
+                <h4 class="mt-2">Rechercher un resto</h4>
+                <p style="text-align: justify">Avec la barre de recherche, vous sélectionnez en fonction de votre ville, du type de cuisine et
+                    de
+                    votre créneau de disponibilité, les offres proposées par les restaurateurs, et réservez ensuite
+                    un
+                    restaurant ou bar à vin.</p>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-4 col-12 py-md-5">
+                <h4>Sur chaque créneau, vous avez accès :</h4>
+                <ul>
+                    <li>au descriptif du restaurant, type de cuisine, sa localisation, la carte, tarif moyen ;</li>
+                    <li>au nombre de participants max indiqué par le restaurateur sur le créneau souhaité ;</li>
+                    <li>à l'heure du déjeuner ou dîner ;</li>
+                    <li>au statut de l'évènement (confirmé, en attente de confirmation ou complet) ;</li>
+                    <li>à la liste des participants déjà inscrits et vous pouvez visualiser leur profil.</li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-12 py-5">
+                <img src="{{ asset('images/img6.jpg') }}"
+                     alt="Copains de resto"
+                     class="img-fluid"
+                     title="Copains de resto">
+
+            </div>
+        </div>
+
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-4 py-5 d-none d-md-block">
+                <img src="{{ asset('images/img7.jpg') }}"
+                     alt="Copains de resto"
+                     class="img-fluid"
+                     title="Copains de resto">
+            </div>
+            <div class="col-md-4 col-12 py-md-5">
+                <h4>Confirmation</h4>
+                <p style="text-align: justify">Les réservations sont confirmées par mail dès qu'il y a 2 personnes inscrites.
+                    Si le nombre est inférieur à 2 personnes, le statut indique « en attente de
+                    confirmation ». La réservation sera annulée s'il n'y a pas d'autre inscription.
+                    Le statut de l'évènement est également accessible depuis l'onglet « mes réservations ».
+                </p><br>
+                <p style="text-align: justify">Si jamais vous ne trouvez pas votre bonheur ou si l'évènement est complet, vous avez également accès
+                    aux autres dates proposées par le restaurateur</p>
+            </div>
+        </div>
+            <div class="col-md-4 py-5 d-lg-none">
+                <img src="{{ asset('images/img7.jpg') }}"
+                     alt="Copains de resto"
+                     class="img-fluid"
+                     title="Copains de resto">
+            </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-4 col-12 py-md-2">
+                <h4>Le Jour J</h4>
+                <p style="text-align: justify">Allez hop c'est parti le jour J : vous vous retrouvez à table avec des nouvelles personnes et
+                    partager un moment convivial ! Vous êtes libre de choisir à la carte ou au menu les plats
+                    souhaités
+                    selon l'offre du restaurateur.<br>
+                    L'addition est directement réglée au restaurateur selon ce que vous avez consommé. Vous pouvez
+                    si
+                    vous le souhaitez poster ensuite des avis sur le restaurant ou le concept !
+                    <br>
+                    Vous pouvez venir en solo mais également entre amis ou en couple pour étendre votre réseau
+                    social.</p>
+            </div>
+            <div class="col-md-4 col-12 py-5">
+                <img src="{{ asset('images/img8.jpg') }}"
+                     alt="Copains de resto" class="img-fluid"
+                     title="Copains de resto">
+            </div>
+        </div>
+        <div class="col-md-8 col-12 py-md-5 m-auto py-md-5">
+            <h4>Annuler ma réservation</h4>
+            <p style="text-align: justify">
+                Si vous ne pouvez plus venir, afin d’aider nos restaurateurs partenaires à gérer au mieux les
+                réservations et de ne pas bloquer une place,  nous vous serons reconnaissants de bien vouloir
+                annuler votre réservation via l’onglet «gérer mes réservations » dans votre espace personnel.
+            </p>
+        </div>
+        <div class="text-center py-5 col-12">
+            <h1>La charte du Copain de resto</h1>
+            <hr class="col-md-8 col-12 m-auto">
+        </div>
+        <div class="text-center">
+            <p>Je découvre la charte du Copains de resto</p>
+            <p>
+                 <img src="{{ asset('images/charte_copins_de_resto.jpg') }}"
+                                                          alt="Copains de resto"
+                                                          class="img-fluid"
+                                                          title="Copains de resto">
+
+            </p>
+            <p><a href="{{ asset('documents/Charte_du_copains_de_resto.pdf') }}" class="btn bg-primaryColor"
+                  target="_blank" title="Charte Copains de resto">Voir la charte</a></p>
+        </div>
+        <div class="text-center my-5 pt-5">
+            <img src="{{ asset('images/img9.jpg') }}"
+                 alt="Copains de resto"
+                 class="img-fluid"
+                 title="Copains de resto">
+        </div>
+        <div class="text-center py-5">
+            <a href="{{ path('app_reservation') }}" class="btn btn-lg bg-primaryColor">Trouver une table</a>
+        </div>
+    </div>
+{% endblock %}

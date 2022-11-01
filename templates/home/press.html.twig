@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Presse - Copains de Resto{% endblock %}
+
+{% block header %}
+    <img src="{{ asset("images/header7.jpg") }}" width="100%" alt="Image header Copains de Resto"
+         title="Image header Copains de Resto">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>On parle de nous!</h1>
+        <hr>
+        <ul class="list-group">
+            <li class="list-group-item border-0 py-2">
+                <div class="card mb-3 p-2" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ asset('images/20Minutes.png') }}" class="img-fluid rounded-start"
+                                 alt="20 Minutes Bordeaux Copains de Resto"
+                                 title="20 Minutes Bordeaux Copains de Resto">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">27/07/2022</h5>
+                                <p class="card-text">20 Minutes Bordeaux</p>
+                                <p class="card-text"><small class="text-muted"><a
+                                            href="https://www.20minutes.fr/bordeaux/3278239-20220427-groupe-facebook-copains-resto-lutte-contre-isolement-tout-aidant-restaurateurs"
+                                            target="_blank" class="link-dark"> Voir l'article</a></small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item py-2 border-0">
+                <div class="card mb-3 p-2" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ asset('images/actuBordeau.png') }}" class="img-fluid rounded-start"
+                                 alt="ActuBordeaux Copains de Resto"
+                                 title="ActuBordeaux Copains de Resto">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">07/04/2022</h5>
+                                <p class="card-text">Actu Bordeaux</p>
+                                <p class="card-text"><small class="text-muted"><a
+                                            href="https://actu.fr/nouvelle-aquitaine/bordeaux_33063/bordeaux-elle-cree-un-groupe-facebook-pour-diner-au-restaurant-avec-des-inconnus_50016385.html"
+                                            target="_blank" class="link-dark"> Voir l'article</a></small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item border-0 py-2">
+                <div class="card mb-3 p-2" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ asset('images/RTL.png') }}" class="img-fluid rounded-start"
+                                 alt="ActuBordeaux Copains de Resto"
+                                 title="ActuBordeaux Copains de Resto">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">02/05/2011</h5>
+                                <p class="card-text">RTL - Marche ou rêve</p>
+                                <p class="card-text"><small class="text-muted"><a
+                                            href="https://www.rtl.fr/programmes/on-defait-le-monde/7900150634-marche-ou-reve-copains-de-resto-bordeaux?fbclid=IwAR3AxUbw-QEvXZsLMrfSR4wa72ihUygdMyTbdXey8bwg3hGqxpZWa-BV0Wk"
+                                            target="_blank" class="link-dark"> Voir l'article</a></small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+{% endblock %}

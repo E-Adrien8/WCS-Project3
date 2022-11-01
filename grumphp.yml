@@ -1,0 +1,18 @@
+grumphp:
+    tasks:
+        composer:
+            file: ./composer.json
+        phpversion:
+            project: '8.0'
+        phpcs:
+            standard: ~
+        phpstan:
+            configuration: ./phpstan.neon
+            level: 6
+        phpmd:
+            whitelist_patterns:
+                - 'src'
+            exclude:
+                - '\src\Kernel.php'
+            ruleset:
+                - 'phpmd.xml'

@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Copains de Resto - Page Restaurateur{% endblock %}
+
+{% block header %}
+    <img src="{{ asset("images/header7.jpg") }}" width="100%" alt="Image header Copains de Resto">
+{% endblock %}
+
+{% block body %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 col-12">
+                <h2 class="mb-4">
+                    Vous êtes restaurateur ?
+                </h2>
+                <p>Copains de resto se développe actuellement sur la ville de Bordeaux avec pour ambition de
+                    faciliter la
+                    recherche de restaurants pour ses clients qui ne souhaitent pas y aller seuls, contribuer au
+                    lien social,
+                    apporter une solution aux nouveaux habitants, professionnels en déplacements, voyageurs solo et
+                    aider les
+                    restaurateurs à améliorer leur remplissage. <br>
+
+                    Copains de resto a pour ambition de proposer à ses clients différents types de restaurants,
+                    cuisine, de tarifs.</p>
+            </div>
+            <div class="col-md-5 col-12 text-center">
+                <img src="{{ asset('images/restorer-picture.jpeg') }}" alt="cuisinier restaurateur" width="80%"
+                     class="mb-5">
+            </div>
+        </div>
+        <div class="col-12 text-center my-3">
+            <h2>
+                Nos ambitions pour vous :
+            </h2>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-md-4 col-12 text-center">
+                <i class="bi bi-magnet-fill" style="font-size: 5rem;"></i>
+                <p>Attirer une clientèle qui ne viendrait pas seule <br> au restaurant malgré
+                    qu’elle en ait l’envie</p>
+            </div>
+            <div class="col-md-4 col-12 text-center">
+                <i class="bi bi-people-fill" style="font-size: 5rem;"></i>
+                <p>Améliorer votre remplissage <br> en évitant les tables de 1 personne</p>
+            </div>
+            <div class="col-md-4 col-12 text-center">
+                <img src="{{ asset('images/lighthouse.png') }}" style="max-width: 5rem;" class="my-3">
+                <p>Améliorer votre visibilité</p>
+            </div>
+        </div>
+
+        <div class="col-12 text-center my-5">
+            <p><strong>Envie de tenter cette aventure avec nous sur la ville de Bordeaux ? <br>
+                    Associez-vous à Copains de resto.
+                    C’est simple et vous pourrez annuler à tout moment !</strong></p>
+        </div>
+        <div class="col-12 text-center my-5">
+            <a href="{{ path('app_restorer_register') }}" class="btn bg-primaryColor p-2 mb-3"
+               style="font-weight: bold; font-size: 1.3rem; width: 13rem;">Inscription</a>
+        </div>
+
+        <div class="col-12 text-center my-5">
+            <p> Nous vous contacterons ensuite pour valider ensemble votre inscription. </p>
+        </div>
+        <div class="col-12 text-center">
+            <p><strong>Envie d’en savoir plus ? <br>
+
+                    Vous êtes intéressés mais êtes situés en dehors de Bordeaux Métropole ?</strong> <br>
+
+                Contactez-nous via: contact@copainsderesto.com </p>
+        </div>
+
+    </div>
+    {% endblock %}

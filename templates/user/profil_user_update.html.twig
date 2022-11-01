@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css"
+          xmlns="http://www.w3.org/1999/html">
+{% endblock %}
+
+{% block body %}
+
+    <section class="mb-5 pb-5">
+        <div class="card col-lg-6 mx-auto">
+            <h5 class="card-header text-center" style="background-color: #f7cb0c;">Mon profil Copains de resto</h5>
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="row">
+                            <div class="col text-center">
+                                {{ form_start(updateProfilForm) }}
+                                {% if user.picture is not null %}
+                                    <img src="{{ asset('uploads/avatars/'~user.picture) }}"
+                                         class="rounded-circle p-2 bd-highlight" width="200" height="200"
+                                         alt="{{ user.userName }}">
+                                {% else %}
+                                    <img
+                                        class=" rounded-circle p-1 bd-highlight"
+                                        src="{{ asset('images/avatar.jpg') }}" width="200" height="200"
+                                        alt="{{ user.username|capitalize }}"
+                                        title="{{ user.username|capitalize }}">
+                                {% endif %}
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <ul style="list-style-type: none;">
+                                            <li><strong>Anniversaire :</strong>
+                                                {{ user.birthdate|date("d/m/Y") }}</li>
+                                            <br>
+                                            <li><strong>Loisirs, centre d'intérêts :</strong>
+                                                {% if user.description is not null %}
+                                                    {{ user.description }}
+                                                {% else %}
+
+                                                {% endif %}
+                                            <li>
+                                                <div class="col">
+                                                    <p class="card-text">
+                                                        {{ form_row(updateProfilForm.userName) }}
+                                                    </p>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="col">
+                                                    <p class="card-text">
+                                                        {{ form_row(updateProfilForm.picture) }}
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="col">
+                                                    <p class="card-text">
+                                                        {{ form_row(updateProfilForm.description) }}
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="col">
+                                                    <p class="card-text">
+                                                        {{ form_row(updateProfilForm.facebook) }}
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="col">
+                                                    <p class="card-text">
+                                                        {{ form_row(updateProfilForm.instagram) }}
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="btn-sm mx-auto d-flex flex-row-reverse mb-5 mt-4">
+                                            <div class="me-4">
+                                                <a href="#" class="btn btn-warning">
+                                                    <button type="submit" class="btn">Enregistrer
+                                                        Modifications
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {{ form_end(updateProfilForm) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

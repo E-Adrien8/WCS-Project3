@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compte update user{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+{% endblock %}
+
+{% block body %}
+    <section class="mb-5 pb-5">
+        <div class="card col-lg-6 mx-auto">
+            <h5 class="card-header text-center" style="background-color: #f7cb0c;">Mon Compte</h5>
+            <div class="card-body">
+                <h6 class="text-center">Mes informations personnelles</h6>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <ul class="list-group list-group-flush">
+                                <div class="row">
+                                    {{ form_start(updateCompteForm) }}
+                                    <div class="col">
+                                        <p class="card-text">
+                                            {{ form_row(updateCompteForm.firstname) }}
+                                        </p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="card-text col">
+                                            {{ form_row(updateCompteForm.lastname) }}
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="card-text">
+                                            {{ form_row(updateCompteForm.birthdate) }}
+                                            {{ form_row(updateCompteForm.email) }}
+                                            {{ form_row(updateCompteForm.phoneNumber) }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="card-text">
+                                            {{ form_row(updateCompteForm.zipcode) }}
+                                        </p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="card-text pe-0 me-0">
+                                            {{ form_row(updateCompteForm.city) }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+
+                        <div class="btn-sm mx-auto d-flex flex-row-reverse mb-5 mt-4 justify-content-between">
+                            <div class="me-4">
+                                <a href="#" class="btn btn-warning">
+                                    <button type="submit" class="btn">Enregistrer Modifications</button>
+                                </a>
+                            </div>
+                            <div class="pt-2 me-4">
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop">
+                                    Modifier Password
+                                </button>
+                                {{ form_end(updateCompteForm) }}
+                            </div>
+                            <button class="btn btn-danger me-2" data-bs-toggle="modal"
+                                    data-bs-target="#confirmation-suppression" alt="Je confirme ma suppression"
+                                    title="Je confirme ma suppression">Supprimer mon compte
+                            </button>
+                            <div class="modal fade" id="confirmation-suppression" tabindex="-1"
+                                 aria-labelledby="confirmation-suppression" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            Êtes-vous sûr de vouloir supprimer votre compte ? ( Cette action est
+                                            définitive )
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="{{ path('app_user_compte_delete') }}"
+                                               type="button" class="btn btn-danger">Je supprime mon compte</a>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                Annuler
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

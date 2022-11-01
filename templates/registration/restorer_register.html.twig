@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}S'inscrire en restaurateur - Copains de Resto{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <section class="m-5 py-5">
+        <div class="card col-lg-5 mx-auto">
+            <h5 class="card-header text-center">Inscription restaurateur</h5>
+            <div class="card-body">
+                {{ form_start(restorerRegistrationForm) }}
+                <h5 class="card-title text-center">Bienvenue chez Copains de resto !</h5>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">
+                                {{ form_row(restorerRegistrationForm.firstname) }}
+                            </p>
+                        </div>
+                        <div class="col">
+                            <p class="card-text col">
+                                {{ form_row(restorerRegistrationForm.lastname) }}
+                            </p>
+                        </div>
+                        <div class="col-12">
+                            <p class="card-text">
+                                {{ form_row(restorerRegistrationForm.phoneNumber) }}
+                                {{ form_row(restorerRegistrationForm.email) }}
+                            </p>
+                        </div>
+                        <div class="col">
+                            <p class="card-text">
+                                {{ form_row(restorerRegistrationForm.plainPassword.first) }}
+                            </p>
+                        </div>
+                        <div class="col">
+                            <p class="card-text">
+                                {{ form_row(restorerRegistrationForm.plainPassword.second) }}
+                            </p>
+                        </div>
+                        {{ form_row(restorerRegistrationForm.CGU) }}
+
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mb-5 mt-4">
+                <button type="submit" class="btn btn-warning">Inscription</button>
+            </div>
+            {{ form_end(restorerRegistrationForm) }}
+        </div>
+    </section>
+{% endblock %}

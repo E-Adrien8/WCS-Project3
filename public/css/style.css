@@ -1,0 +1,55 @@
+/* Color Palette => https://coolors.co/000000-ffffff-e4e4e4-e5ba00-f7cb0c */
+
+:root {
+    --primaryColor: #f7cb0c;
+    --secondaryColor: #e5ba00;
+    --thirdColor: #e4e4e4;
+    --fourthColor: #ffffff;
+    --fithColor: #000000;
+}
+.bg-primaryColor{
+    background-color: var(--primaryColor);
+}
+.bg-secondaryColor{
+    background-color: var(--secondaryColor);
+}
+.bg-thirdColor{
+    background-color: var(--thirdColor);
+}
+.bg-fourthColor{
+    background-color: var(--fourthColor);
+}
+.bg-fithColor{
+    background-color: var(--fithColor);
+}
+.bg-image2{
+    background-image: url("../images/header5.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* GOOGLE MAPS */
+
+.map {
+    width: 25em;
+    height: 20em;
+}
+.map2 {
+    width: 25em;
+    height: 37em;
+    top: 100px;
+}
+
+/* GOOGLE MAPS */
+@media screen and (max-width: 900px)  {
+    .map {
+        width: 20em;
+        height: 20em;
+    }
+
+    .map2 {
+        width: 20em;
+        height: 20em;
+    }
+}

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier l'évènement - Copains de Resto{% endblock %}
+
+{% block body %}
+    <div class="container mb-5">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Modifier l'évènement</h2>
+            <button type="button" class="btn btn-light" onclick="history.back()">Retour</button>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                {{ form(form) }}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

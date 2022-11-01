@@ -1,0 +1,16 @@
+{# JS intégré dans la page show event pour gérer le responsive #}
+<script>
+    let url;
+    let params = (new URL(document.location)).searchParams;
+    const sessionVersion = '{{ app.request.session.get('version') }}';
+
+    if (screen.width < 992 && sessionVersion !== 'mobile') {
+    params.append('version', 'mobile');
+    url = '/event/{{ event.id }}?'+params.toString();
+    window.location.href = url;
+} else if (screen.width >= 992 && (sessionVersion === 'mobile' || sessionVersion === '')) {
+    params.append('version', 'desktop');
+    url = '/event/{{ event.id }}?'+params.toString();
+    window.location.href = url;
+}
+</script>

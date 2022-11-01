@@ -1,0 +1,32 @@
+<section class="navbar-expand-lg  bg-primaryColor py-lg-3 py-2 px-4 px-lg-5 mb-md-3">
+    <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#search"
+            aria-expanded="false">
+        <i class="bi bi-search p-2" style='font-size:24px; color: #1e1e1e'> Rechercher</i>
+    </button>
+    <div class="navbar-collapse py-4 py-lg-0 collapse" id="search">
+        <div class="navbar-nav mx-auto">
+    {{ form_start(form) }}
+    <div class="d-flex justify-content-center flex-md-row flex-column align-items-center container">
+        <div class="p-1 col-md-1.5">
+            {{ form_widget(form.date) }}
+        </div>
+        <div class="p-1 col-md-1.5">
+            {{ form_widget(form.meal) }}
+        </div>
+        <div class="p-1 col-md-1.5">
+            {{ form_widget(form.type) }}
+        </div>
+        <div class="p-1 col-md-2">
+            {{ form_widget(form.restaurant) }}
+        </div>
+        <div class="p-1 col-md-2">
+            {{ form_widget(form.zone) }}
+        </div>
+        <div class="p-1 col-md-1.5">
+            <button type="submit" class="btn bg-black text-white">Trouver une table !</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+        </div>
+    </div>
+</section>

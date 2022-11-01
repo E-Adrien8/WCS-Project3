@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ restaurant.name }} - Copains de Resto{% endblock %}
+
+{% block body %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1 class="display-6 mx-3">Informations du restaurant</h1>
+                    <button type="button" class="btn btn-light" onclick="history.back()">Retour</button>
+                </div>
+                <hr>
+                <h2 class="mb-3 mt-4">
+                    {{ restaurant.name }}
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="card mb-3">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Zone du restaurant : {{ restaurant.zone.city }}</li>
+                                <li class="list-group-item"> Adresse : {{ restaurant.address }}
+                                    {{ restaurant.zipCode }} {{ restaurant.city }}
+                                </li>
+                                <li class="list-group-item">Tél : {{ restaurant.phoneNumber }}</li>
+                                <li class="list-group-item">Type de cuisine : {{ restaurant.foodType.name }}</li>
+                                <li class="list-group-item">Prix moyen : {{ restaurant.averagePrice }} €</li>
+                                <li class="list-group-item">Nom du chef : {{ restaurant.chefName }}</li>
+                                <li class="list-group-item">Description : {{ restaurant.description|nl2br }}</li>
+                                <li class="list-group-item">Lien site internet : <a href="{{ restaurant.websiteLink }}"
+                                                                                    target="_blank">{{ restaurant.websiteLink }}</a>
+                                </li>
+                                <li class="list-group-item">Lien Instagram : <a href="{{ restaurant.instagramLink }}"
+                                                                                target="_blank">{{ restaurant.instagramLink }}</a>
+                                </li>
+                                <li class="list-group-item">Lien TripAdvisor : <a
+                                        href="{{ restaurant.tripadvisorLink }}"
+                                        target="_blank">{{ restaurant.tripadvisorLink }}</a></li>
+                                <li class="list-group-item">Lien Facebook : <a href="{{ restaurant.facebookLink }}"
+                                                                               target="_blank">{{ restaurant.facebookLink }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 mb-3">
+                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{ asset('uploads/main-pictures/'~restaurant.mainPicture) }}"
+                                         class="img-fluid w-100" alt="{{ restaurant.name }}"
+                                         style="height: 23rem; object-fit: cover; object-position: 50% 0;">
+                                </div>
+                                {% for picture in restaurant.pictures %}
+                                    <div class="carousel-item">
+                                        <img src="{{ asset('uploads/pictures/'~picture.picture) }}" class="img-fluid w-100"
+                                             alt="{{ restaurant.name }}"
+                                             style="height: 23rem; object-fit: cover; object-position: 50% 0;">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                                    data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                                    data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+
+                        <h3 class="mt-3">Menu</h3>
+                        <p> {{ restaurant.menuText|nl2br }}</p>
+                        {% if restaurant.menuPdf is not null %}
+                            <a href="{{ asset('uploads/menus/'~restaurant.menuPdf) }}" target="_blank"
+                               class="btn btn-dark">Voir le menu</a>
+                        {% endif %}
+                        <a href="{{ path('app_restaurant_pictures', {'id': restaurant.id}) }}"
+                           class="btn bg-primaryColor my-2">Gérer les photos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="my-5">
+                <a href="{{ path('app_restaurant_update', {'id': restaurant.id}) }}"
+                   class="btn btn-warning"><i class="bi bi-pen"></i></a>
+                <button class="btn btn-danger"
+                        data-bs-toggle="modal" data-bs-target="#confirmation-suppression"
+                        alt="Supprimer le restaurant"
+                        title="Supprimer le restaurant"><i class="bi bi-trash3"></i></button>
+                <div class="modal fade" id="confirmation-suppression" tabindex="-1"
+                     aria-labelledby="confirmation-suppression" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                Êtes-vous sûr de vouloir supprimer le restaurant ? <br>
+                                Tous les évènements liés à ce restaurant seront supprimés.
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{{ path('app_restaurant_delete', {'id': restaurant.id}) }}"
+                                   type="button" class="btn btn-danger">Supprimer le restaurant</a>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+{% endblock %}

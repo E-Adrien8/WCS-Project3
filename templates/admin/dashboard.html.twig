@@ -1,0 +1,78 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+    <main>
+        <section>
+            <div class="container py-5">
+                <div class="row py-1">
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="card-title fs-3">Nombre total d'utilisateur</h5>
+                                <p class="card-text fs-2"><strong>{{ nbUsers }}</strong></p>
+                                {# <a href="#" class="btn btn-dark">Voir le détail</a> #}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="card-title fs-3">Nombre total de restaurateur</h5>
+                                <p class="card-text fs-2"><strong>{{ nbRestorer }}</strong></p>
+                                {# <a href="#" class="btn btn-dark">Voir le détail</a> #}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="card-title fs-3">Nombre total de restaurant</h5>
+                                <p class="card-text fs-2"><strong>{{ nbRestaurant }}</strong></p>
+                                {# <a href="#" class="btn btn-dark">Voir le détail</a> #}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-1">
+                    {#<div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="card-title fs-3">Nombre total d'utilisateur vérifié</h5>
+                                <p class="card-text fs-2"><strong>{{ nbUsersVerified }}</strong></p>
+                                #}{# <a href="#" class="btn btn-dark">Voir le détail</a> #}{#
+                            </div>
+                        </div>
+                    </div>#}
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="card-title fs-3">Nombre total de restaurateur vérifié</h5>
+                                <p class="card-text fs-2"><strong>{{ nbRestorersVerified }}</strong></p>
+                                {# <a href="#" class="btn btn-dark">Voir le détail</a> #}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Liste des comptes restaurateurs à activer</h5>
+                                <ul class="list-group">
+                                    {% for restorerNotVerified in restorersNotVerified %}
+                                        <li class="list-group-item py-3 d-flex justify-content-between">{{ restorerNotVerified.firstname }} {{ restorerNotVerified.lastname }}
+                                            - {{ restorerNotVerified.email }} <a href="{{ ea_url().unsetAll().setController('App\\Controller\\Admin\\RestorerCrudController').setAction('edit').set('entityId', restorerNotVerified.id) }}" class="btn btn-sm btn-dark">Voir le détail</a> </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

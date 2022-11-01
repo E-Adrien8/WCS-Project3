@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vos évènements - Copains de Resto{% endblock %}
+
+{% block body %}
+
+    <div>
+        {{ render(controller('App\\Controller\\HomeController::searchForm')) }}
+    </div>
+    <section class="container py-5">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="display-6 mx-3">Vos prochains évènements</h1>
+        </div>
+        <hr>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Ville</th>
+                <th scope="col">Restaurant</th>
+                <th scope="col">Date et heure</th>
+                <th scope="col">Participants</th>
+                <th scope="col">Statut</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for event in futurEvents %}
+                <tr>
+                    <td></td>
+                    <td class="fw-bold">{{ event.restaurant.zone.city }}</td>
+                    <td><p class="text-start fw-semibold">{{ event.restaurant.name }}</p></td>
+
+                    <td><p>{{ event.date|date("d-m-Y") }}
+                            à {{ event.time | replace({':': 'h'}) }} </p>
+                    </td>
+                    <div class="row centered mb-0">
+                        <td class="p-0 ">
+                            {% for user in event.attendees %}
+                                {% if user.picture is not null %}
+                                    <a href="{{ path('app_user_profil',{'id':user.id}) }}">
+                                        <img
+                                            class=" rounded-circle p-1 bd-highlight" data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            src="{{ asset('uploads/avatars/'~user.picture) }}" width="40" height="40"
+                                            data-toggle="tooltip" alt="{{ user.username|capitalize }}"
+                                            title="{{ user.username|capitalize }}"></a>
+                                {% else %}
+                                    <a href="{{ path('app_user_profil',{'id':user.id}) }}">
+                                        <img
+                                            class=" rounded-circle p-1 bd-highlight" data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            src="{{ asset('images/avatar.jpg') }}" width="40" height="40"
+                                            data-toggle="tooltip" alt="{{ user.username|capitalize }}"
+                                            title="{{ user.username|capitalize }}"></a>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    </div>
+                    <td>{% if event.isFull() %}
+                            <p class="text-danger mt-0" style="font-weight: bold">Évènement complet</p>
+                        {% elseif event.isConfirmed() %}
+
+                            <p class="text-success m-0" style="font-weight: bold">Évènement confirmé</p>
+
+                        {% else %}
+
+                            <p class="text-warning m-0" style="font-weight: bold">Évènement en attente de
+                                confirmation</p>
+
+                        {% endif %}</td>
+                    <td>
+                        <a href="{{ path('app_event',{'id':event.id}) }}" class="btn bg-primaryColor">Voir ma
+                            réservation</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section class="container py-5">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="display-6 mx-3">Vos évènements passés</h1>
+        </div>
+        <hr>
+        <table class="table">
+            <thead>
+            <tr>
+                <th></th>
+                <th scope="col">Ville</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Date</th>
+                <th scope="col">Participants</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for event in pastEvents %}
+                <tr>
+                    <td></td>
+                    <td class="fw-bold">{{ event.restaurant.zone.city }}</td>
+                    <td><p class="text-start fw-semibold">{{ event.restaurant.name }}</p>
+                    </td>
+                    <td> {{ event.date|date("d-m-Y") }}</td>
+                    <td class="p-0 ">
+                        {% for user in event.attendees %}
+                            {% if user.picture is not null %}
+                                <a href="{{ path('app_user_profil',{'id':user.id}) }}">
+                                    <img
+                                        class=" rounded-circle p-1 bd-highlight" data-bs-toggle="tooltip"
+                                        data-bs-placement="top"
+                                        src="{{ asset('uploads/avatars/'~user.picture) }}" width="40" height="40"
+                                        data-toggle="tooltip" alt="{{ user.username|capitalize }}"
+                                        title="{{ user.username|capitalize }}"></a>
+                            {% else %}
+                                <a href="{{ path('app_user_profil',{'id':user.id}) }}">
+                                    <img
+                                        class=" rounded-circle p-1 bd-highlight" data-bs-toggle="tooltip"
+                                        data-bs-placement="top"
+                                        src="{{ asset('images/avatar.jpg') }}" width="40" height="40"
+                                        data-toggle="tooltip" alt="{{ user.username|capitalize }}"
+                                        title="{{ user.username|capitalize }}"></a>
+                            {% endif %}
+                        {% endfor %}
+                    <td>
+                        <a href="{{ path('app_event',{'id':event.id}) }}" class="btn bg-primaryColor">Voir ma
+                            réservation</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}
+
+{% block additionnal_js %}
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+{% endblock %}

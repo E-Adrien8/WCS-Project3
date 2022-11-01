@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-lg  bg-primaryColor sticky-top py-lg-3 px-4 px-lg-5 wow fadeIn"
+     data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn; top: -100px;">
+    {% if app.user %}
+        <a href="{{ path('app_restorer_events') }}"
+           class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <img src="{{ asset('images/Logo_80.png') }}" width="70%">
+        </a>
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse"
+                aria-expanded="false">
+            <i class="fas fa-hamburger" style='font-size:24px; color: #1e1e1e'></i>
+        </button>
+
+        <div class="navbar-collapse py-4 py-lg-0 collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto">
+                <a href="{{ path('app_restorer_restaurants') }}" class="btn nav-link link-dark"
+                   aria-current="page">Vos restaurants</a>
+                <a href="{{ path('app_restorer_new_event') }}"
+                   class="btn nav-link link-dark">Créer un évènement</a>
+                <a href="{{ path('app_restorer_events') }}" class="btn nav-link link-dark">Mes
+                    évènements</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link link-dark dropdown-toggle" role="button" id="dropdownMenuLink"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <strong>{{ app.user.firstname }}</strong>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="{{ path('app_restorer_compte') }}">Mon compte</a></li>
+                        <hr>
+                        <li><a class="dropdown-item" href="{{ path('app_logout_restorer') }}">
+                                <i class="bi bi-power"></i>Déconnexion</a></li>
+                    </ul>
+                </li>
+            </div>
+        </div>
+
+    {% else %}
+        <a href="{{ path('app_home') }}"
+           class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <img src="{{ asset('images/Logo_80.png') }}" width="70%">
+        </a>
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse"
+                aria-expanded="false">
+            <i class="fas fa-hamburger" style='font-size:24px; color: #1e1e1e'></i>
+        </button>
+
+        <div class="navbar-collapse py-4 py-lg-0 collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto">
+                <a href="{{ path('app_concept') }}" class="nav-link link-dark"
+                   aria-current="page">Concept</a>
+                <a href=" {{ path('app_reservation') }} "
+                   class="nav-link link-dark">Je réserve un resto</a>
+                <a href="{{ path('app_restorer') }}" class="nav-link link-dark">Restaurateur</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link link-dark dropdown-toggle" role="button" id="dropdownMenuLink"
+                       data-bs-toggle="dropdown" aria-expanded="false">Connexion</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="{{ path('app_user_login') }}">Je suis un
+                                utilisateur</a></li>
+                        <hr>
+                        <li><a class="dropdown-item" href="{{ path('app_restorer_login') }}">Je suis un
+                                restaurateur</a></li>
+                    </ul>
+                </li>
+
+            </div>
+        </div>
+    {% endif %}
+</nav>
+

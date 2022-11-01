@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier compte restaurateur{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+{% endblock %}
+
+{% block body %}
+    <section class="mb-5 pb-5">
+        <div class="card col-lg-6 mx-auto">
+            <h5 class="card-header text-center" style="background-color: #f7cb0c;">Modifier mon Compte</h5>
+            <div class="card-body">
+                <h6 class="text-center">Mes informations personnelles</h6>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <ul class="list-group list-group-flush">
+                                <div class="row">
+                                    {{ form_start(restorerUpdateCompteForm) }}
+                                    <div class="col">
+                                        <p class="card-text">
+                                            {{ form_row(restorerUpdateCompteForm.firstname) }}
+                                        </p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="card-text col">
+                                            {{ form_row(restorerUpdateCompteForm.lastname) }}
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="card-text">
+                                            {{ form_row(restorerUpdateCompteForm.email) }}
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="card-text">
+                                            {{ form_row(restorerUpdateCompteForm.phoneNumber) }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                        <div class="btn-sm mx-auto d-flex flex-row-reverse mb-5 mt-4 align-items-center">
+                            <div class="me-4">
+                                <button type="submit" class="btn btn-warning">Enregistrer Modifications</button>
+                            </div>
+                            <div class="me-4">
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop">
+                                    Modifier Password
+                                </button>
+                            </div>
+                        </div>
+                        {{ form_end(restorerUpdateCompteForm) }}
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-danger my-2"
+                            data-bs-toggle="modal" data-bs-target="#supprimer-compte"
+                            title="supprimer-compte">Supprimer mon compte
+                    </button>
+                    <div class="modal fade" id="supprimer-compte" tabindex="-1"
+                         aria-labelledby="supprimer-compte" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    Êtes-vous sûr de vouloir supprimer votre compte ?
+                                    Cette action est définitive.
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="{{ path('app_restorer_compte_delete') }}"
+                                       type="button" class="btn btn-danger">Supprimer mon compte</a>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                        Annuler
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

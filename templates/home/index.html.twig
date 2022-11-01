@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur Copains De Resto{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+
+{% endblock %}
+
+{% block header %}
+    <img src="{{ asset("images/header7.jpg") }}" width="100%" alt="Image header Copains de Resto">
+{% endblock %}
+
+{% block body %}
+
+    {% include 'common/form_search.html.twig' %}
+    {#    {{ render(controller('App\\Controller\\HomeController::searchForm')) }} #}
+
+    {% if events is null %}
+
+        <section class="container py-5">
+            <h3 class="mb-3">Copains de resto : un nouveau concept de réservation de restaurants !</h3>
+            <p class= "py-3">
+                Copains de resto c'est un nouveau concept de réservation de restaurants où les restaurateurs et bars à
+                vin partenaires de Copains de resto proposent une table afin que des clients qui ne se connaissent pas
+                puissent réserver un restaurant et partager un moment de découvertes culinaires et sociales en
+                rencontrant de nouvelles personnes ! </p>
+            <h3 class="mb-3">Copains de resto est actuellement en phase de développement sur la ville de Bordeaux !</h3>
+            <p class= "py-3">Vous habitez Bordeaux ou êtes en déplacement pro ou en voyage solo sur Bordeaux ?
+                Rejoignez la communauté des Copains de resto pour nous aider à développer le concept !
+                L’inscription aux évènements est gratuite. L’addition est directement réglée au restaurateur.
+            </p>
+        </section>
+        <section class="container mb-5">
+            <h3> Évènements en cours :</h3>
+            <hr>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+
+                {% for event in display %}
+                    <div class="col">
+                        {% include 'widget/event_preview.html.twig' with {'event': event} %}
+                    </div>
+                {% endfor %}
+
+            </div>
+        </section>
+
+    {% else %}
+
+        {% if events is empty %}
+
+            <div class="container d-flex flex-row justify-content-center align-items-center my-5">
+                <i class="bi bi-emoji-smile-upside-down mx-3" style="font-size: 5rem"></i>
+                <h3 class="text-align-center">Sorry, il n'y a pas de résultat à votre recherche!</h3>
+            </div>
+
+            <section class="container mb-5">
+                <h3 class="mt-2 mx-3"> Évènements en cours :</h3>
+                <div class="row row-cols-1 row-cols-md-2 g-4 mt-3 mx-2">
+
+                    {% for event in display %}
+                        <div class="col">
+                            {% include 'widget/event_preview.html.twig' with {'event': event} %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+        {% else %}
+            <section class="container mb-5">
+                <h3 class="mt-2 mx-3"> Résultat(s) de la recherche :</h3>
+            <div class="row g-4 mt-3 mx-2">
+                <div class="col-12 col-md-8">
+                    {% for event in events %}
+                        {% include 'widget/event_preview.html.twig' with {'event': event} %}
+                    {% endfor %}
+                </div>
+                <div class="col-3 col-md-4">
+                    <div class="map2 position-sticky" id="gmp-map"></div>
+                </div>
+            </div>
+        {% endif %}
+        </section>
+    {% endif %}
+
+{% endblock %}
+
+{% block additionnal_js %}
+    <script>
+        {% if events %}
+            function initMap() {
+                const events = [];
+                {% for event in events %}
+                events[{{ event.id }}] = {
+                    id: {{ event.id }},
+                    restaurant: {
+                        id: {{ event.restaurant.id }},
+                        name: '{{ event.restaurant.name }}',
+                        lat: {{ event.restaurant.latitude }},
+                        lng: {{ event.restaurant.longitude }},
+                    },
+                };
+                {% endfor %}
+
+                const map = new google.maps.Map(document.getElementById("gmp-map"), {
+                    zoom: 15,
+                    center: {lat: {{ events[0].restaurant.latitude }}, lng: {{ events[0].restaurant.longitude }} },
+                });
+
+                let markers = {};
+                events.forEach(function (event) {
+                    markers[event.restaurant.id] = new google.maps.Marker({
+                        position: {lat: event.restaurant.lat, lng: event.restaurant.lng},
+                        map,
+                        title: event.restaurant.name,
+                        icon: {
+                            url: "https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red.png"
+                        }
+                    });
+                });
+
+                const domEvents = document.querySelectorAll('[data-event-id]');
+
+                domEvents.forEach(function (domEvent) {
+                    domEvent.addEventListener('mouseenter', function () {
+                        let eventId = domEvent.dataset.eventId;
+                        let event = events[eventId];
+                        let lat = parseFloat(domEvent.dataset.eventLat);
+                        let lng = parseFloat(domEvent.dataset.eventLng);
+
+                        map.panTo({lat: lat, lng: lng});
+                        markers[event.restaurant.id].setIcon({
+                            url: "https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_blue.png"
+                        });
+                    });
+
+                    domEvent.addEventListener('mouseleave', function () {
+                        let eventId = domEvent.dataset.eventId;
+                        let event = events[eventId];
+
+                        markers[event.restaurant.id].setIcon({
+                            url: "https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red.png"
+                        });
+                    });
+                });
+            }
+
+            window.initMap = initMap;
+        {% endif %}
+
+    </script>
+
+{% endblock %}

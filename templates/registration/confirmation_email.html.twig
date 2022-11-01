@@ -1,0 +1,11 @@
+
+<img src="{{asset('images/Logo2.png')}}" alt="" />
+
+<h1><strong>Bonjour, Merci de confirmer votre Email</strong></h1>
+
+<p>
+    Merci de bien vouloir confirmer votre adresse mail en cliquant sur le lien ci-dessous :
+    <br><br>
+    <a href="{{ signedUrl }}">Confirmer mon adresse Email</a>.
+    Ce lien expire dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+</p>

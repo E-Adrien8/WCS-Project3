@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réserver un restaurant - Copains de Resto{% endblock %}
+
+    {% block header %}
+        <img src="{{ asset("images/header7.jpg") }}" width="100%" alt="Image header Copains de Resto">
+    {% endblock %}
+
+    {% block body %}
+        {{ render(controller('App\\Controller\\HomeController::searchForm')) }}
+
+        <section class="container py-md-2">
+            <h3 class="mt-2 mx-3"> Je réserve un restaurant</h3>
+            <hr>
+            <div class="row  row-cols-1 row-cols-md-3  g-4 mt-3 mx-2">
+                <div class="col-12 col-md-8">
+                    {% for event in events %}
+                        {% include 'widget/event_preview.html.twig' with {'event': event} %}
+                    {% endfor %}
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="map2 position-sticky" id="gmp-map"></div>
+                </div>
+            </div>
+            <div class="py-5 d-flex justify-content-center">
+                {% for i in 1..nbPages %}
+                    <a href="{{ path('app_reservation', {p:i }) }}" class="btn btn-light mx-1">{{ i }}</a>
+                {% endfor %}
+            </div>
+        </section>
+    {% endblock %}
+
+{% block additionnal_js %}
+    <script type="text/javascript">
+        {% if events %}
+        function initMap() {
+            const events = [];
+
+            {% for event in events %}
+            events[{{ event.id }}] = {
+                id: {{ event.id }},
+                restaurant: {
+                    id: {{ event.restaurant.id }},
+                    name: '{{ event.restaurant.name }}',
+                    lat: {{ event.restaurant.latitude }},
+                    lng: {{ event.restaurant.longitude }},
+                },
+            };
+            {% endfor %}
+
+            const map = new google.maps.Map(document.getElementById("gmp-map"), {
+                zoom: 15,
+                center: {lat: {{ events[0].restaurant.latitude }}, lng: {{ events[0].restaurant.longitude }} },
+            });
+
+            let markers = {};
+            events.forEach(function (event) {
+                markers[event.restaurant.id] = new google.maps.Marker({
+                    position: {lat: event.restaurant.lat, lng: event.restaurant.lng},
+                    map,
+                    title: event.restaurant.name,
+                    icon: {
+                        url: "https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red.png"
+                    }
+                });
+            });
+
+            const domEvents = document.querySelectorAll('[data-event-id]');
+
+            domEvents.forEach(function (domEvent) {
+                domEvent.addEventListener('mouseenter', function () {
+                    let eventId = domEvent.dataset.eventId;
+                    let event = events[eventId];
+                    let lat = parseFloat(domEvent.dataset.eventLat);
+                    let lng = parseFloat(domEvent.dataset.eventLng);
+
+                    map.panTo({lat: lat, lng: lng});
+                    markers[event.restaurant.id].setIcon({
+                        url: "https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_blue.png"
+                    });
+                });
+
+                domEvent.addEventListener('mouseleave', function () {
+                    let eventId = domEvent.dataset.eventId;
+                    let event = events[eventId];
+
+                    markers[event.restaurant.id].setIcon({
+                        url: "https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red.png"
+                    });
+                });
+            });
+        }
+
+        window.initMap = initMap;
+        {% endif %}
+    </script>
+{% endblock %}

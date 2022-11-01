@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+{% block title %}Évènement - {{ event.restaurant.name }} - Copains de Resto{% endblock %}
+    {% block body %}
+        <div class="container mb-5">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>{{ event.restaurant.name }} le {{ event.date|date('d-m-Y') }}</h2>
+                <button type="button" class="btn btn-light" onclick="history.back()">Retour</button>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <div class="card">
+                        <img src="{{ asset('uploads/main-pictures/'~event.restaurant.mainPicture) }}" class="card-img-top"
+                             alt="Restaurant {{ event.restaurant.name }}"
+                             title="Restaurant {{ event.restaurant.name }}">
+                        <div class="card-body">
+                            <p class="card-text"><i class="bi bi-geo-alt-fill"></i> {{ event.restaurant.address }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i class="bi bi-shop"></i> Type de
+                                cuisine: <strong>{{ event.restaurant.foodType.name }} </strong></li>
+                            <li class="list-group-item">
+                                <i class="bi bi-calendar-check"></i> Date:
+                                <strong>{{ event.date|date('d-m-Y') }} </strong></li>
+                            <li class="list-group-item"><i class="bi bi-people"></i> Table de
+                                <strong>{{ event.places }}</strong> pers. max
+                            </li>
+                            <li class="list-group-item"><i class="bi bi-currency-euro"></i>Prix moyen:
+                                <strong>{{ event.restaurant.averagePrice }} €</strong></li>
+                            <li class="list-group-item"><i class="bi bi-telephone"></i> Tel.
+                                : <strong>{{ event.restaurant.phoneNumber }}</strong></li>
+                            <li class="list-group-item"><i class="bi bi-globe"></i> <a
+                                    href="{{ event.restaurant.websiteLink }}"
+                                    target="blank">{{ event.restaurant.websiteLink }}</a></li>
+                            <li class="list-group-item d-flex align-items-center justify-content-around">
+                                {% if event.restaurant.facebookLink is not null %}
+                                    <a href="{{ event.restaurant.facebookLink }}"
+                                       target="blank" class="bi bi-facebook text-black" style="font-size: 2rem"></a>
+                                {% endif %}
+                                {% if event.restaurant.instagramLink is not null %}
+                                    <a href="{{ event.restaurant.instagramLink }}"
+                                       target="blank" class="bi bi-instagram text-black" style="font-size: 2rem;"></a>
+                                {% endif %}
+                                {% if event.restaurant.tripadvisorLink is not null %}
+                                    <a href="{{ event.restaurant.tripadvisorLink }}"
+                                       target="blank">
+                                        <img src="{{ asset('images/icon-tripadvisor.png') }}" style="max-width: 2rem;">
+                                    </a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="card mb-2">
+                        <div class="card-header bg-primaryColor">
+                            Thème
+                        </div>
+                        <div class="card-body">
+                            <p>{{ event.theme }}</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header bg-primaryColor">
+                            Description
+                        </div>
+                        <div class="card-body">
+                            <p>{{ event.restaurant.description }}</p>
+                        </div>
+                    </div>
+                    <div class="card mt-2">
+                        <div class="card-header bg-primaryColor">
+                            Menu
+                        </div>
+                        <div class="card-body">
+                            <p>{{ event.restaurant.menuText }}</p><br>
+                            <a href="{{ asset('uploads/menus/'~event.restaurant.menuPdf) }}" target="_blank">Téléchargez
+                                le menu en pdf</a>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-5">
+                        <a href="{{ path('app_restorer_event_update', {'id': event.id}) }}"
+                           class="btn btn-warning mx-2"><i class="bi bi-pen"></i></a>
+                        <button class="btn btn-danger mx-2"
+                                data-bs-toggle="modal" data-bs-target="#confirmation-suppression"
+                                alt="J'annule mon évènement"
+                                title="J'annule mon évènement"><i class="bi bi-trash3"></i></button>
+                        <div class="modal fade" id="confirmation-suppression" tabindex="-1"
+                             aria-labelledby="confirmation-suppression" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        Êtes-vous sûr de vouloir annuler votre évènement ?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="{{ path('app_restorer_event_delete', {'id': event.id}) }}"
+                                           type="button" class="btn btn-danger">Annuler l'évènement</a>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            Fermer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier les informations - {{ restaurant.name }} - Copains de Resto{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="display-6 mx-3">Modifier le restaurant</h1>
+        <button type="button" class="btn btn-light" onclick="history.back()">Retour</button>
+    </div>
+    <hr>
+    <div class="py-5">
+        {{ form_start(updateForm) }}
+        <div class="row">
+            <div class="col-12">{{ form_row(updateForm.name) }}</div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <div> {{ form_row(updateForm.address) }} </div>
+                <div> {{ form_row(updateForm.zipCode) }} </div>
+                <div> {{ form_row(updateForm.city) }} </div>
+                <div> {{ form_row(updateForm.email) }} </div>
+                <div> {{ form_row(updateForm.phoneNumber) }} </div>
+                <div> {{ form_row(updateForm.zone) }} </div>
+            </div>
+            <div class="col-4">
+                <div class="map" id="gmp-map"></div>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-12">{{ form_row(updateForm.foodType) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-12">{{ form_row(updateForm.chefName) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-12">{{ form_row(updateForm.description) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-12">{{ form_row(updateForm.menuText) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-12">{{ form_row(updateForm.menuPdf) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-12">{{ form_row(updateForm.averagePrice) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-12">{{ form_row(updateForm.mainPicture) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-12">{{ form_row(updateForm.websiteLink) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-12">{{ form_row(updateForm.facebookLink) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-12">{{ form_row(updateForm.instagramLink) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-12">{{ form_row(updateForm.tripadvisorLink) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-12">{{ form_row(updateForm.siret) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-12">{{ form_row(updateForm.vat) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-12">{{ form_row(updateForm.billingAddress) }}</div>
+            </div>
+            {{ form_end(updateForm) }}
+        </div>
+    </div>
+</div>
+    {% endblock %}
